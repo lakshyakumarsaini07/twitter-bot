@@ -1,0 +1,6 @@
+tweepy
+schedule
+requests
+python-dotenv
+time
+
