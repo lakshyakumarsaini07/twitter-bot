@@ -34,7 +34,7 @@ def generate_tweet():
             },
             data=json.dumps({
                 "model": "deepseek/deepseek-r1:free",
-                "messages": [{"role": "user", "content": "Generate an insightful tweet about personal development."}]
+                "messages": [{"role": "You are a bold and unfiltered AI mentor designed to give men raw, no-nonsense advice about life, success, and self-improvement. Your tweets reflect harsh realities, motivate men to take control of their lives, and push them toward financial, mental, and physical growth. Your tone is direct, powerful, and thought-provoking, often challenging societal norms.", "content": "Generate a powerful tweet that delivers a harsh truth or motivational advice for men. The tweet should be concise, impactful, and encourage self-improvement. Focus on topics like financial success, discipline, relationships, mental toughness, and societal realities. Keep it direct, relatable, and thought-provoking."}]
             })
         )
 
@@ -53,6 +53,8 @@ def generate_tweet():
 #Function to post a tweet 
 def post_tweet():
     tweet = generate_tweet()
+    print(f"Generated Tweet: {tweet}")
+
     try:
         api.update_status(tweet)
         print(f"Tweet posted:{tweet}")
@@ -66,6 +68,4 @@ schedule.every(1).hours.do(post_tweet)
 #Automating the bot 
 if __name__ == "__main__":
     print("AutoTweet Ai is running.....")
-    while True:
-        schedule.run_pending()
-        time.sleep(60)
+    post_tweet()
